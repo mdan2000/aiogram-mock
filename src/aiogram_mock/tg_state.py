@@ -6,7 +6,6 @@ from uuid import uuid4
 
 from aiogram.methods import AnswerCallbackQuery
 from aiogram.types import (
-    UNSET,
     Chat,
     Document,
     ForceReply,
@@ -114,10 +113,10 @@ class TgState:
     def update_chat_user_state(
         self,
         chat_id: int,
-        reply_markup: Union[ReplyKeyboardMarkup, ForceReply, None] = UNSET,
+        reply_markup: Union[ReplyKeyboardMarkup, ForceReply, None] = None,
     ) -> None:
         replace_data = {}
-        if reply_markup != UNSET:
+        if reply_markup is not None:
             replace_data['reply_markup'] = reply_markup
 
         if chat_id in self._selective_user_state:
@@ -131,10 +130,10 @@ class TgState:
         self,
         chat_id: int,
         users_ids: Iterable[int],
-        reply_markup: Union[ReplyKeyboardMarkup, ForceReply, None] = UNSET,
+        reply_markup: Union[ReplyKeyboardMarkup, ForceReply, None] = None,
     ) -> None:
         replace_data = {}
-        if reply_markup != UNSET:
+        if reply_markup is not None:
             replace_data['reply_markup'] = reply_markup
 
         chat_dict = self._selective_user_state[chat_id]
